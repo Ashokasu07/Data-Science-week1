@@ -109,6 +109,6 @@ df7.groupby("Base Flavor").agg(
         "Texture Rating": ["mean", "max", "min", "sum"],
     }
 )  # Aggregating multiple functions on multiple columns
-df7.groupby("Base Flavor", "Liked").agg(
-    {"Falvor Rating": ["mean", "sum", "min", "size", "max"]}
+df7.groupby(["Base Flavor", "Liked"]).agg(
+    {"Flavor Rating": ["mean", "sum", "min", "size", "max"]}
 )
