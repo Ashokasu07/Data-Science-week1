@@ -112,3 +112,10 @@ df7.groupby("Base Flavor").agg(
 df7.groupby(["Base Flavor", "Liked"]).agg(
     {"Flavor Rating": ["mean", "sum", "min", "size", "max"]}
 )
+df7.groupby("Base Flavor").describe()  # Getting descriptive statistics for each group
+
+# Merge, Join and Concatenate
+df8 = pd.read_csv(r"C:\Users\deeku\Desktop\Dummy Data\LOTR.csv")
+df8
+df9 = pd.read_csv(r"C:\Users\deeku\Desktop\Dummy Data\LOTR2.csv")
+df9
