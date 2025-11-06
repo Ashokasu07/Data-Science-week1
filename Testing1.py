@@ -114,8 +114,30 @@ df7.groupby(["Base Flavor", "Liked"]).agg(
 )
 df7.groupby("Base Flavor").describe()  # Getting descriptive statistics for each group
 
-# Merge, Join and Concatenate
+# 6. Merge, Join and Concatenate
 df8 = pd.read_csv(r"C:\Users\deeku\Desktop\Dummy Data\LOTR.csv")
 df8
-df9 = pd.read_csv(r"C:\Users\deeku\Desktop\Dummy Data\LOTR2.csv")
+df9 = pd.read_csv(r"C:\Users\deeku\Desktop\Dummy Data\LOTR 2.csv")
 df9
+df8.merge(df9)  # Merging two DataFrames on common columns
+df8.merge(df9, how="inner", on="FellowshipID")  # Inner join on 'FellowshipID'
+df8.merge(
+    df9, how="inner", on=["FellowshipID", "FirstName"]
+)  # Inner join on multiple columns
+df8.merge(df9, how="outer")  # Outer join-returns everything in both dataframes
+df8.merge(df9, how="left")  # Left join
+df8.merge(df9, how="right")  # Right join
+
+# Join: same as merge but uses index by default
+df10 = df8.set_index("FellowshipID").join(
+    df9.set_index("FellowshipID"), lsuffix="_left", rsuffix="_right"
+)
+df10  # Default is left join
+df11 = df8.set_index("FellowshipID").join(
+    df9.set_index("FellowshipID"), how="outer", lsuffix="_left", rsuffix="_right"
+)
+df11  # Outer join
+pd.concat([df8, df9])  # Concatenating two DataFrames vertically: default axis=0
+pd.concat(
+    [df8, df9], join="outer", axis=1
+)  # Concatenating two DataFrames horizontally via axis=1
