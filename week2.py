@@ -38,6 +38,8 @@ plt.xlabel("Day of the Week")
 plt.ylabel("Average Sales")
 plt.bar(Average_sales_per_day.index, Average_sales_per_day.values, color=colors)
 plt.show()
+
+# Another way to plot
 Average_sales_per_day.plot(
     kind="bar",
     title="Average Sales per Day of the Week",
@@ -45,4 +47,9 @@ Average_sales_per_day.plot(
     ylabel="Average Sales",
     figsize=(10, 6),
     color="red",
+)
+
+# 95% confidence interval for sales
+confidence_interval = 1.96 * (
+    sales_df["Umsatz"].std() / np.sqrt(len(sales_df["Umsatz"]))
 )
